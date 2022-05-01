@@ -1,6 +1,15 @@
 const { postgresql } = require('../databases/postgresql')
 
+/**
+ * Get an specific transaction
+ * @param {number} pk_transaction User primary key
+ * @returns {{pk_transaction: 1, fk_user: 123, description:"",amount: 0.0}}
+ */
+ const getTransaction = (pk_transaction) => {
 
+    let transaction = postgresql.public.one(`select * from transactions where pk_transaction = '${pk_transaction}'`);
+    return transaction
+}
 
 /**
  * Create a transaction
@@ -21,5 +30,6 @@ const { postgresql } = require('../databases/postgresql')
 }
 
 module.exports = {
+    getTransaction,
     createTransaction
 }
