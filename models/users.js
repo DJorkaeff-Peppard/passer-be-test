@@ -26,7 +26,7 @@ const createUser = (pk_user, name,status) => {
  const updateUser = (pk_user, name, status) => {
 
     try {
-        let user = postgresql.public.one(`update users SET name = '${name}', status='${status}' WHERE pk_user = '${pk_user}'`);
+        let user = postgresql.public.one(`update users SET name = '${name}', status='${status}' WHERE pk_user = '${pk_user}'  returning *;`);
         return user
     }
     catch (e) {
@@ -53,7 +53,7 @@ const getUser = (pk_user) => {
 const deleteUser = (pk_user) => {
 
     try {
-        let user = postgresql.public.one(`delete from users where pk_user = '${pk_user}'`);
+        let user = postgresql.public.one(`delete from users where pk_user = '${pk_user}' returning pk_user;`);
         return user
     }
     catch (e) {
