@@ -23,9 +23,15 @@ const createUser = (pk_user, name,status) => {
  * @param {string} name User name
  * @returns {{pk_user: 1, name: "Juan"}}
  */
-const updateUser = (pk_user, name) => {
+ const updateUser = (pk_user, name, status) => {
 
-    throw new Error('Method not implemented.');
+    try {
+        let user = postgresql.public.one(`update users SET name = '${name}', status='${status}' WHERE pk_user = '${pk_user}'`);
+        return user
+    }
+    catch (e) {
+        throw new Error(e)
+    }
 }
 
 /**
@@ -51,5 +57,6 @@ const deleteUser = (pk_user) => {
 
 module.exports = {
     createUser,
-    getUser
+    getUser,
+    updateUser
 }
