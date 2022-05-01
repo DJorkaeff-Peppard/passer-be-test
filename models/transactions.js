@@ -13,7 +13,7 @@ const { postgresql } = require('../databases/postgresql')
 
 /**
  * Get an specific transaction from 
- * @param {number} fk_user User primary key
+ * @param {number} fk_user User foreign key
  * @returns {{pk_transaction: 1, fk_user: 123, description:"",amount: 0.0}}
  */
  const getTransactionUser = (fk_user) => {

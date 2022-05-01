@@ -13,7 +13,6 @@ const getTransaction = async (req, res, next) => {
 }
 const getTransactionUser = async (req, res, next) => {
     const { fk_user } = req.query
-    console.log(req.query)
     try {
         let transaction = await transactions.getTransactionUser(fk_user)
         res.status(200).send(transaction)
